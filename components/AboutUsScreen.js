@@ -8,13 +8,10 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
-
 import * as Animatable from 'react-native-animatable';
-
 import Collapsible from 'react-native-collapsible';
 import Accordion from 'react-native-collapsible/Accordion';
 import  Icon  from 'react-native-vector-icons/Ionicons';
-
 
 const CONTENT = [
   {
@@ -33,18 +30,16 @@ const CONTENT = [
       'Our Return & Refund Policy template lets you get started with a Return and Refund Policy agreement. This template is free to download and use.According to TrueShip study, over 60% of customers review a Return/Refund Policy before they make a purchasing decision.',
   },
 ];
-
 const Separator = () => (
   <View style={styles.separator} />
 );
+
+
 export default class AboutUsScreen extends Component {
   state = {
-  
-    activeSections: [],
-    
+  activeSections: [],
     collapsed: true,
-    
-    multipleSelect: false,
+      multipleSelect: false,
   };
  toggleExpanded = () => {
     //Toggling the state of single Collapsible
@@ -61,13 +56,13 @@ export default class AboutUsScreen extends Component {
   renderHeader = (section, _, isActive) => {
     //Accordion Header view
     return (
+     
       <Animatable.View
         duration={400}
         style={[styles.header, isActive ? styles.active : styles.inactive]}
         transition="backgroundColor">
-          
-      
         <Text style={styles.headerText}>{section.title}</Text>
+        <Icon style={{ marginTop:-25,marginLeft:260 }}name='md-arrow-dropdown' size={30} />
       </Animatable.View>
     );
   };
@@ -75,6 +70,7 @@ export default class AboutUsScreen extends Component {
   renderContent(section, _, isActive) {
     //Accordion Content view
     return (
+      <View>
       <Animatable.View
         duration={400}
         style={[styles.content, isActive ? styles.active : styles.inactive]}
@@ -86,10 +82,12 @@ export default class AboutUsScreen extends Component {
         </Animatable.Text>
       
       </Animatable.View>
+      <Separator/>
+      </View>
+      
     );
   }
-
-  render() {
+ render() {
     const { multipleSelect, activeSections } = this.state;
     return (
       <View style={styles.container}>
@@ -97,15 +95,15 @@ export default class AboutUsScreen extends Component {
                  
           <Accordion
             activeSections={activeSections}
-            //for any default active section
+            
             sections={CONTENT}
-            //title and content of accordion
+            
             touchableComponent={TouchableOpacity}
           
             expandMultiple={multipleSelect}
-            //Do you want to expand mutiple at a time or single at a time
+            
             renderHeader={this.renderHeader}
-            //Header Component(View) to render
+            
             renderContent={this.renderContent}
             //Content Component(View) to render
             duration={400}
@@ -115,6 +113,7 @@ export default class AboutUsScreen extends Component {
           />
          
         </ScrollView>
+        
       </View>
     );
   }
@@ -137,19 +136,20 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   headerText: {
-    textAlign: 'center',
-    fontSize: 16,
+    textAlign: 'left',
+    fontSize: 20,
     fontWeight: '500',
+
   },
   content: {
     padding: 20,
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
   },
   active: {
-    backgroundColor: 'rgba(255,255,255,1)',
+    backgroundColor: 'white',
   },
   inactive: {
-    backgroundColor: 'rgba(245,252,255,1)',
+    backgroundColor: 'white',
   },
   selectors: {
     marginBottom: 10,
